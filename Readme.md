@@ -105,7 +105,7 @@ Efficiently returns only required records — **never loads all 5M documents**.
   "currentPage": 1,
   "totalPages": 120000,
   "totalRecords": 5000000,
-  "dataList": []
+  "dataList": [...]
 }
 ```
 
@@ -130,7 +130,7 @@ Frontend is built for smooth performance even with large datasets.
 ✔ Minimum salesAmount filter
 ✔ Tables
 ✔ Loader for heavy queries
-✔ New aggregation takes **~5 sec** on 5M docs
+✔ New aggregation takes **~2 sec** on 5m docs
 
 ---
 
@@ -216,9 +216,7 @@ npm run dev
 
 > Real-time aggregation results based on groupBy, date range, and minimum sale amount.
 
-```
 ![Analytics Dashboard](./screenshots/analytics-dashboard.png)
-```
 
 ---
 
@@ -226,17 +224,13 @@ npm run dev
 
 > Fast, high-performance table that loads millions of records with pagination & sorting.
 
-```
 ![Transactions Table](./screenshots/transactions-table.png)
-```
 
 ---
 
 ## 🧭 **3. Home Page / Landing Page (Optional)**
 
-```
 ![Home Page](./screenshots/home.png)
-```
 
 ---
 
@@ -248,8 +242,8 @@ This project is licensed under the **MIT License**.
 
 # 👨‍💻 **Author**
 
-**Deepak Kumar Yadav**
-Full-Stack Developer (MERN & Laravel)
+**Deepak Kumar Yadav** <br>
+Full-Stack Developer
 
-🔗 GitHub: [https://github.com/your-username](https://github.com/your-username)
-🔗 LinkedIn: [https://linkedin.com/in/your-profile](https://linkedin.com/in/your-profile)
+🔗 GitHub: [https://github.com/Deepak7510] <br>
+🔗 LinkedIn: [https://www.linkedin.com/in/deepakyadav01z]
