@@ -1,0 +1,66 @@
+1. The Scenario & Data Setup
+ 
+You are building an analytics platform that tracks global sales transactions. The dataset is extremely large.
+Simulated Dataset: Create a MongoDB collection named transactions and seed it with a minimum of 5 million documents.
+Document Structure: Each document should have the following schema (use an automation script or tool like faker to generate realistic, varied data):
+transactionId: String (Unique)
+timestamp: Date (Should span a year or more)
+region: String (e.g., 'NA', 'EMEA', 'APAC', 'LATAM')
+productCategory: String (e.g., 'Electronics', 'Apparel', 'Home Goods', 'Software')
+salesAmount: Number (Random float between 10 and 5000)
+customerTier: String (e.g., 'Bronze', 'Silver', 'Gold', 'Platinum')
+ 
+2. Backend Task (Express/Node.js & MongoDB)
+ 
+The primary challenge is creating highly performant APIs that can process and aggregate this massive dataset under demanding filtering conditions without causing timeouts or excessive server load.
+ 
+A. Data Aggregation & Filtering API
+ 
+Create a single, optimized REST API endpoint: GET /api/v1/analytics/summary
+This API must accept the following query parameters and return a single JSON object containing aggregated metrics:
+Query Parameter	Type	Purpose	Key Optimization Focus
+groupBy	String	Required. Must be one of: region, productCategory, or customerTier.	MongoDB Aggregation Pipeline & Indexes
+startDate	Date String	Optional. Filter transactions that occurred on or after this date.	MongoDB Indexing and $match stage
+endDate	Date String	Optional. Filter transactions that occurred on or before this date.	MongoDB Indexing and $match stage
+minAmount	Number	Optional. Filter transactions with a sales amount greater than or equal to this value.	MongoDB Indexing and $match stage
+Export to Sheets
+Required Output: The JSON response must return an array of aggregated results, grouped by the groupBy field, with the following calculated fields for each group:
+groupName: The value of the groupBy field (e.g., 'NA', 'Software', 'Gold').
+totalSales: The sum of all salesAmount for the group.
+totalTransactions: The count of all transactions for the group.
+averageSale: The average salesAmount for the group.
+ 
+B. Data Visualization Endpoint
+ 
+Create an optimized endpoint for fetching a high-volume, paginated list of transactions: GET /api/v1/transactions
+This endpoint must implement pagination and sorting to prevent overwhelming the client/server with 5 million documents at once.
+Query Parameter	Type	Purpose	Key Optimization Focus
+page	Number	Required. The current page number (starts at 1).	MongoDB .skip() and .limit() or Cursor-based Pagination (Advanced)
+limit	Number	Required. The number of records per page (e.g.10, 20, 50).	Performance, Payload size
+sortBy	String	Optional. Field to sort by (e.g., timestamp, salesAmount).	MongoDB Indexing and .sort()
+Export to Sheets
+Required Output: An object containing:
+currentPage: The requested page number.
+totalPages: The total number of pages available.
+totalRecords: The total number of records in the database.
+data: The array of transactions for the current page.
+ 
+3. Frontend Task (React)
+ 
+The frontend challenge is to efficiently consume these high-performance APIs and render the data without freezing the user interface.
+ 
+A. Analytics View
+ 
+Create a component to display the data from the /api/v1/analytics/summary endpoint.
+Implement controls (dropdowns/date pickers) for the user to select the groupBy field, date range, and minimum sales amount.
+Display the results in a table or a set of charts (e.g., a bar chart showing totalSales by region).
+Performance Focus: Ensure the UI remains responsive even while the potentially long-running aggregation request is pending. Show a loading state.
+ 
+B. Paginated Transactions Table
+ 
+Create a component that consumes the /api/v1/transactions endpoint and displays the data in a dynamic table.
+Implement functional pagination controls (First, Previous, Page Numbers, Next, Last) that correctly update the page query parameter.
+Implement column sorting (clicking a column header) that updates the sortBy query parameter.
+Performance Focus:
+Utilize a technique like Windowing or Virtualization (e.g., using a library like react-window or react-virtualized) to efficiently render the high number of rows on a single page (limit up to 50) without performance degradation.
+Handle the loading state for API calls.
