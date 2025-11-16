@@ -58,38 +58,38 @@ async function seed() {
 
   console.log("Creating OPTIMIZED INDEXES...");
 
-  await collection.createIndex(
-    { transactionId: 1 },
-    { unique: true, background: true }
-  );
+  // Compound indexes for common query patterns
+  await collection.createIndex({ timestamp: 1 });
+  await collection.createIndex({ region: 1 });
+  await collection.createIndex({ productCategory: 1 });
+  await collection.createIndex({ customerTier: 1 });
+  await collection.createIndex({ salesAmount: 1 });
 
-  // 1) Best index for groupBy = region
-  await collection.createIndex(
-    { region: 1, timestamp: -1, salesAmount: -1 },
-    { background: true, name: "idx_region_time_amount" }
-  );
+  // Compound indexes for aggregation queries
+  await collection.createIndex({
+    region: 1,
+    timestamp: 1,
+    salesAmount: 1,
+  });
 
-  // 2) Best index for groupBy = productCategory
-  await collection.createIndex(
-    { productCategory: 1, timestamp: -1, salesAmount: -1 },
-    { background: true, name: "idx_category_time_amount" }
-  );
+  await collection.createIndex({
+    productCategory: 1,
+    timestamp: 1,
+    salesAmount: 1,
+  });
 
-  // 3) Best index for groupBy = customerTier
-  await collection.createIndex(
-    { customerTier: 1, timestamp: -1, salesAmount: -1 },
-    { background: true, name: "idx_tier_time_amount" }
-  );
+  await collection.createIndex({
+    customerTier: 1,
+    timestamp: 1,
+    salesAmount: 1,
+  });
 
-  // Pagination indexes (optional but useful)
+  // Text index for any potential search functionality
   await collection.createIndex(
-    { timestamp: -1, _id: -1 },
-    { background: true, name: "idx_paginate_timestamp" }
-  );
-
-  await collection.createIndex(
-    { salesAmount: -1, _id: -1 },
-    { background: true, name: "idx_paginate_amount" }
+    {
+      transactionId: 1,
+    },
+    { unique: true }
   );
 
   console.log("ALL INDEXES CREATED SUCCESSFULLY!");
