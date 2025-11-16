@@ -1,15 +1,3 @@
-Yadav Ji,
-Neeche **aapke given content ko maine complete, professional, clean, beautiful GitHub-README style** me redesign kar diya hai — **fully polished**, icons, sections, formatting, everything perfect.
-Aap ise **direct copy-paste** karke GitHub par use kar sakte ho.
-
----
-
-# 🎯 **🚀 Complete & Fully Designed README (Professional GitHub Version)**
-
-👇 **FINAL READY VERSION — Just Copy/Paste**
-
----
-
 # 📊 **Global Sales Analytics Platform (MERN Stack)**
 
 A high-performance analytics platform built using the **MERN stack**, capable of processing **millions of global sales transactions** with optimized backend aggregation and a seamless frontend UI.
@@ -140,9 +128,9 @@ Frontend is built for smooth performance even with large datasets.
 ✔ GroupBy dropdown
 ✔ Date filters
 ✔ Minimum salesAmount filter
-✔ Charts + Tables
+✔ Tables
 ✔ Loader for heavy queries
-✔ New aggregation takes **~1 sec** on 5M docs
+✔ New aggregation takes **~5 sec** on 5M docs
 
 ---
 
@@ -222,6 +210,36 @@ npm run dev
 
 ---
 
+# 📸 **Screenshots**
+
+## 🖥️ **1. Analytics Dashboard (Summary View)**
+
+> Real-time aggregation results based on groupBy, date range, and minimum sale amount.
+
+```
+![Analytics Dashboard](./screenshots/analytics-dashboard.png)
+```
+
+---
+
+## 📄 **2. Paginated Transactions Table**
+
+> Fast, high-performance table that loads millions of records with pagination & sorting.
+
+```
+![Transactions Table](./screenshots/transactions-table.png)
+```
+
+---
+
+## 🧭 **3. Home Page / Landing Page (Optional)**
+
+```
+![Home Page](./screenshots/home.png)
+```
+
+---
+
 # 📄 **License**
 
 This project is licensed under the **MIT License**.
@@ -235,14 +253,3 @@ Full-Stack Developer (MERN & Laravel)
 
 🔗 GitHub: [https://github.com/your-username](https://github.com/your-username)
 🔗 LinkedIn: [https://linkedin.com/in/your-profile](https://linkedin.com/in/your-profile)
-
----
-
-If you want, I can also:
-
-✅ Add screenshots section
-✅ Add architecture diagram
-✅ Add API examples with screenshots
-✅ Add badges (stars, forks, tech stack icons)
-
-Bas batao Yadav Ji — kya add karna hai?
